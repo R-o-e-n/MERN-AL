@@ -6,6 +6,7 @@ const taskSchema = mongoose.Schema(
             type: String,
             required: [true, "Vendos nje vlere per tekstin!!!"],
         },
+        user: { type: mongoose. Schema. Types. ObjectId, required: true, ref: 'User'}
     },
     {
         timestamps: true,
