@@ -11,10 +11,10 @@ const getTasks =  asyncHandler(async (req,res) => {
 const setTask = asyncHandler(async (req,res) => {
     if(!req.body || !req.body.text){
 		res.status(400);
-        throw new Error('Please enter a task');
+        throw new Error('Te lutem vendos nje tekst');
 	}
     const task = await Task.create({text: req.body. text , user: req.user.id })
-    res.status(200).json({message : 'Krijo Task'});
+    res.status(200).json({message : 'U krijua Tasku'});
     
 })
 
@@ -23,10 +23,11 @@ const updateTask =  asyncHandler(async (req,res) => {
 
     if (!task) {
     res.status(400);
-    throw new Error('Task not found');
+    throw new Error('Task nuk gjendet');
 
     }
-
+    
+   
     const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res. status(200).json(updatedTask);
     //res.status(200).json({message : `Task: ${req.params.id} updated.`});
@@ -37,8 +38,19 @@ const deleteTask =  asyncHandler(async (req,res) => {
 
     if (!task) {
     res.status(400);
-    throw new Error('Task not found');
+    throw new Error('Task nuk gjendet');
 
+    }
+
+    const user =  await User.findById(req.user.id)
+    if (!user){
+        res.status(401);
+        throw new Error('Perdoruesi nuk ekziston');
+    }
+
+    if (task.user.toString() != user.id){
+        res.status(401);
+        throw new Error('Perdoruesi nuk ka akses per te fshire')
     }
 
     await Task.findByIdAndDelete(req.params.id);

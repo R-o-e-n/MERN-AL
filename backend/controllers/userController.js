@@ -8,13 +8,13 @@ const registerUser = asyncHandler(async (req, res) => {
 
     if (!name || !email || !password) {
         res.status(400);
-        throw new Error('All fields are mandatory');
+        throw new Error('Te plotesohen te gjitha fushat');
     }
 
     const userExists = await User.findOne({ email });
     if (userExists) {
         res.status(400);
-        throw new Error('User Exists');
+        throw new Error('Perdoruesi Ekziston');
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -28,7 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(400)
-        throw new Error('Invalid user data')
+        throw new Error('Datat e perdoruesit jo te vlefshme')
     }
 })
 
@@ -45,7 +45,7 @@ const loginUser = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(400);
-        throw new Error('Invalid data');
+        throw new Error('Data jo te vlefshme');
     }
 })
 
