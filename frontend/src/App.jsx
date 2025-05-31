@@ -7,11 +7,15 @@ import Dashboard from './components/dashboard';
 import Login from './components/login';
 import Register from './components/register';
 import Header from './components/header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   
 
   return (
+    <>
     <BrowserRouter>
       <div className='container'>
         <Header/>
@@ -22,6 +26,8 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    <ToastContainer />
+    </>
   );
 }
 
