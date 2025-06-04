@@ -7,7 +7,7 @@ import { logoutUser } from '../store/slices/userSlice';
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user } = useSelector(state => state.user);
+    const user = useSelector(state => state.user);
 
     const handleLogout = () => {
         dispatch(logoutUser());
@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <header className='header'>
             <div className="logo">
-                <Link to='/'>Task Creator</Link>
+                <Link to='/'>Krijimi Task</Link>
             </div>
             <ul>
                 {user ? (
@@ -31,7 +31,7 @@ const Header = () => {
                             <Link to='/login'><FaSignInAlt /> Hyr</Link>
                         </li>
                         <li>
-                            <Link to='/register'><FaUser /> Regjistrohu</Link>
+                            <Link to='/register'><FaUser /> Regjistro</Link>
                         </li>
                     </>
                 )}

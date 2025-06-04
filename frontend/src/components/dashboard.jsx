@@ -6,7 +6,7 @@ import TaskForm from './TaskForm';
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const { user } = useSelector(state => state.user);
+    const user = useSelector(state => state.user);
 
     useEffect(() => {
         if (!user) navigate("/login");
@@ -16,7 +16,9 @@ const Dashboard = () => {
         <>
             <section className='heading'>
                 <h1>Miresevini {user && user.name}</h1>
-                <p>Tasks Dashboard</p>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button className='btn' onClick={() => navigate('/alltasks')}>Shih Tasket</button>
+                </div>
             </section>
 
             <TaskForm />
